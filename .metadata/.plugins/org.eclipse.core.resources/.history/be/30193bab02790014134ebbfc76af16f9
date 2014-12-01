@@ -1,0 +1,109 @@
+#include <msp430.h> 
+
+/*
+ * main.c
+ * 74HC595N
+ */
+
+#define SHIFT_CLK 	BIT5
+#define SHIFT_IN 	BIT4
+#define SHIFT_CLEAR BIT3
+#define SHIFT_PORT	P1OUT
+#define MAX_BARS	8
+
+void barFormatter(unsigned int binary);
+void shiftByteOut(unsigned int byteToShift);
+void initPorts();
+
+int main(void) {
+    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
+    initPorts();
+	while(1) {
+		barFormatter(300);
+		__delay_cycles(1000000);
+		barFormatter(1000);
+		__delay_cycles(1000000);
+		barFormatter(1500);
+		__delay_cycles(1000000);
+		barFormatter(2000);
+		__delay_cycles(1000000);
+		barFormatter(2500);
+		__delay_cycles(1000000);
+		barFormatter(3000);
+		__delay_cycles(1000000);
+		barFormatter(4000);
+		__delay_cycles(1000000);
+		barFormatter(4090);
+		__delay_cycles(1000000);
+//		shiftByteOut(0xFF);
+//		__delay_cycles(1000000);
+//		shiftByteOut(0x04);
+//		__delay_cycles(1000000);
+//		shiftByteOut(0xAA);
+//		__delay_cycles(1000000);
+//		shiftByteOut(0x05);
+//		__delay_cycles(1000000);
+
+	}
+	return 0;
+}
+
+void initPorts() {
+	P1DIR |= SHIFT_CLK + SHIFT_IN + SHIFT_CLEAR;
+	P1OUT &= ~(SHIFT_CLK + SHIFT_IN + SHIFT_CLEAR);
+}
+
+void barFormatter(unsigned int value) {
+	// 1. gets binary number 0-4095 and finds percentage
+	// 2. forms led bar representing percentage
+	// e.g. 40% = 11100000 (8 bars)
+	volatile float temp = value;
+	volatile unsigned int bars = 0;
+	volatile float percentage = 0;
+	unsigned barByte = 0;
+	percentage = (temp/4095);
+	if (percentage > 0.92)
+		bars = 8;
+	else
+		bars = percentage*MAX_BARS;
+	int i = 0;
+	for(i = 0; i < bars; i++) {
+		barByte |= 0x01;
+		barByte = barByte << 1;
+	}
+	barByte = barByte >> 1;
+//	i = i + 1;
+	while(i < 8) {
+		barByte = barByte << 1;
+		i = i + 1;
+	}
+
+
+
+	shiftByteOut(barByte);
+
+}
+void shiftByteOut(unsigned int byteToShift) {
+	unsigned int outBit;
+//	SHIFT_PORT &= ~SHIFT_CLEAR;
+	SHIFT_PORT |= SHIFT_CLEAR;
+	int i = 0;
+	for(i = 0; i < 9; i++) {
+		outBit = (0x01 & byteToShift);
+		switch(outBit) {
+		case 0:
+			SHIFT_PORT &= ~SHIFT_IN;
+			break;
+		case 1:
+			SHIFT_PORT |= SHIFT_IN;
+			break;
+		default:
+			break;
+		}
+
+		SHIFT_PORT |= SHIFT_CLK;
+		__delay_cycles(5000);
+		SHIFT_PORT &= ~SHIFT_CLK;
+		byteToShift = byteToShift >> 1;
+	}
+}

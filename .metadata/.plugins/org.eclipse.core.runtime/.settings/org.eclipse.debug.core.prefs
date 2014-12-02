@@ -3,4 +3,4 @@
 //org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.postmortemLaunchType=org.eclipse.cdt.dsf.gdb.launch.coreCLaunch,debug
 //org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.remoteApplicationLaunchType=org.eclipse.rse.remotecdt.dsf.debug,debug
 eclipse.preferences.version=1
-prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="outBit"/>\n<expression enabled\="true" text\="bars"/>\n<expression enabled\="true" text\="percentage"/>\n<expression enabled\="true" text\="g_adcSound"/>\n</watchExpressions>\n
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="outBit"/>\n<expression enabled\="true" text\="bars"/>\n<expression enabled\="true" text\="percentage"/>\n<expression enabled\="true" text\="g_adcSound"/>\n<expression enabled\="true" text\="g_adcInfrared"/>\n</watchExpressions>\n

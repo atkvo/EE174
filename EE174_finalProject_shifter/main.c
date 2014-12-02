@@ -51,16 +51,22 @@ __interrupt void ADC12_ISR (void) {
 			__bic_SR_register_on_exit(LPM0_bits); // Exit LPM0
 		}
 		break;
+//	case 12:
+//		g_adcInfrared = ADC12MEM3;
+//		ADC12CTL0 &= ~ADC12SC;
 	default: break; 				// ignore all other interrupts
 	}
 }
 
 void initADC() {
-	P6SEL |= BIT1;					// select PIN6.0 as ADC input
+	P6SEL |= BIT2 + BIT3;					// select PIN6.2 as ADC input and 6.3
+//	P6SEL |= BIT2;
 	ADC12CTL1 = ADC12SHP + ADC12CONSEQ_0 + ADC12CSTARTADD_1;	// Config ADC12CTL1
 	ADC12CTL0 |= ADC12SHT0_15 + ADC12ON + ADC12REFON;			// Config ADC12CTL0
-	ADC12IE |= ADC12IE1;						// Enable ADC12MEM1 interrupt
-	ADC12MCTL1 |= ADC12INCH_1 + ADC12SREF_0; 	// MEM1, AN1 & Vref = VCC-VSS
+//	ADC12IE |= ADC12IE1 + ADC12IE3;						// Enable ADC12MEM1 and 3 interrupt
+	ADC12IE |= ADC12IE1;
+	ADC12MCTL1 |= ADC12INCH_2 + ADC12SREF_0; 	// MEM2, AN2 & Vref = VCC-VSS
+//	ADC12MCTL3 |= ADC12INCH_3 + ADC12SREF_0;	// MEM3, AN3 & Vref = VCC-VSS
 	ADC12CTL0 |= ADC12ENC;						// Enable ADC Conversions
 }
 

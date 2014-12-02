@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker Unix v4.3.4                    
 ******************************************************************************
->> Linked Sun Nov 30 20:21:19 2014
+>> Linked Mon Dec  1 17:20:24 2014
 
 OUTPUT FILE NAME:   <EE174_finalProject_shifter.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 0000443c
@@ -85,7 +85,7 @@ MEMORY CONFIGURATION
   INT61                 0000fffa   00000002  00000002  00000000  RWIX
   INT62                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   00014400  000005ea  00013e16  RWIX
+  FLASH2                00010000   00014400  000005ec  00013e14  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -197,7 +197,7 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    000005ea     
+.text      0    00010000    000005ec     
                   00010000    000000d8     rts430x_lc_rd_eabi.lib : cmpd.obj (.text:__mspabi_cmpd)
                   000100d8    000000cc     main.obj (.text:barFormatter)
                   000101a4    000000b6     rts430x_lc_rd_eabi.lib : fs_mpy.obj (.text)
@@ -212,14 +212,14 @@ SYSNMI     0    0000fffc    00000002
                   00010514    00000028     main.obj (.text:findMaxADC)
                   0001053c    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
                   00010560    00000024                            : fs_utof.obj (.text)
-                  00010584    0000001e     main.obj (.text:initADC)
-                  000105a2    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
-                  000105b6    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  000105c8    0000000e     main.obj (.text:initPorts)
-                  000105d6    00000006     rts430x_lc_rd_eabi.lib : isr_trap.obj (.text:__TI_ISR_TRAP)
-                  000105dc    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
-                  000105e2    00000004                            : pre_init.obj (.text:_system_pre_init)
-                  000105e6    00000004                            : exit.obj (.text:abort)
+                  00010584    00000020     main.obj (.text:initADC)
+                  000105a4    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
+                  000105b8    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  000105ca    0000000e     main.obj (.text:initPorts)
+                  000105d8    00000006     rts430x_lc_rd_eabi.lib : isr_trap.obj (.text:__TI_ISR_TRAP)
+                  000105de    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  000105e4    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  000105e8    00000004                            : exit.obj (.text:abort)
 
 
 LINKER GENERATED COPY TABLES
@@ -324,7 +324,7 @@ address    name
 00000733   ADC12MEM9_H
 00000732   ADC12MEM9_L
 00004400   ADC12_ISR
-000105e6   C$$EXIT
+000105e8   C$$EXIT
 000008c0   CBCTL0
 000008c1   CBCTL0_H
 000008c0   CBCTL0_L
@@ -993,10 +993,10 @@ address    name
 00004462   __TI_Handler_Table_Limit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
-000105d6   __TI_ISR_TRAP
+000105d8   __TI_ISR_TRAP
 00000001   __TI_args_main
-000105b6   __TI_decompress_none
-000105dc   __TI_decompress_rle24
+000105b8   __TI_decompress_none
+000105de   __TI_decompress_rle24
 00000001   __TI_exit
 0000ffd2   __TI_int41
 0000ffd4   __TI_int42
@@ -1049,17 +1049,17 @@ ffffffff   __c_args__
 0000443c   _c_int00_noexit
 0000fffe   _reset_vector
 00004360   _stack
-000105e2   _system_pre_init
-000105e6   abort
+000105e4   _system_pre_init
+000105e8   abort
 000100d8   barFormatter
 ffffffff   binit
 00010514   findMaxADC
 00002400   g_adcSound
 0000241e   g_adcSoundPointer
 00010584   initADC
-000105c8   initPorts
+000105ca   initPorts
 000104e6   main
-000105a2   memcpy
+000105a4   memcpy
 00010462   shiftByteOut
 
 
@@ -1874,14 +1874,14 @@ address    name
 0001053c   __TI_zero_init
 00010560   __mspabi_fltuf
 00010584   initADC
-000105a2   memcpy
-000105b6   __TI_decompress_none
-000105c8   initPorts
-000105d6   __TI_ISR_TRAP
-000105dc   __TI_decompress_rle24
-000105e2   _system_pre_init
-000105e6   C$$EXIT
-000105e6   abort
+000105a4   memcpy
+000105b8   __TI_decompress_none
+000105ca   initPorts
+000105d8   __TI_ISR_TRAP
+000105de   __TI_decompress_rle24
+000105e4   _system_pre_init
+000105e8   C$$EXIT
+000105e8   abort
 ffffffff   __binit__
 ffffffff   __c_args__
 ffffffff   binit
